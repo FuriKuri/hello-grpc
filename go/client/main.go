@@ -3,7 +3,6 @@ package main
 
 import (
   "log"
-  "os"
 
   "golang.org/x/net/context"
   "google.golang.org/grpc"
@@ -12,7 +11,6 @@ import (
 
 const (
   address     = "localhost:50051"
-  defaultName = "world"
 )
 
 func main() {
@@ -23,10 +21,7 @@ func main() {
   defer conn.Close()
   c := pb.NewGreeterClient(conn)
 
-  name := defaultName
-  if len(os.Args) > 1 {
-    name = os.Args[1]
-  }
+  name := "Go Client"
   r, err := c.SayHello(context.Background(), &pb.Request{Name: name})
   if err != nil {
     log.Fatalf("could not greet: %v", err)

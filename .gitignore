@@ -2,3 +2,5 @@ build
 .idea
 .gradle
 *.iml
+
+node_modules

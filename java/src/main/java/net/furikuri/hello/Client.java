@@ -44,11 +44,7 @@ public class Client {
     public static void main(String[] args) throws Exception {
         Client client = new Client("localhost", 50051);
         try {
-            String user = "world";
-            if (args.length > 0) {
-                user = args[0];
-            }
-            client.greet(user);
+            client.greet("Java Client");
         } finally {
             client.shutdown();
         }

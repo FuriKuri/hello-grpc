@@ -46,7 +46,7 @@ public class Server {
 
         @Override
         public void sayHello(Request req, StreamObserver<Reply> responseObserver) {
-            Reply reply = Reply.newBuilder().setMessage("Hello " + req.getName()).build();
+            Reply reply = Reply.newBuilder().setMessage("Hello " + req.getName() + " from Java Server").build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
         }

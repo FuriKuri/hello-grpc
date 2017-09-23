@@ -10,7 +10,7 @@ import (
 )
 
 const (
-  address     = "localhost:50051"
+  address = "localhost:50051"
 )
 
 func main() {
@@ -21,8 +21,7 @@ func main() {
   defer conn.Close()
   c := pb.NewGreeterClient(conn)
 
-  name := "Go Client"
-  r, err := c.SayHello(context.Background(), &pb.Request{Name: name})
+  r, err := c.SayHello(context.Background(), &pb.Request{Name: "Go Client"})
   if err != nil {
     log.Fatalf("could not greet: %v", err)
   }

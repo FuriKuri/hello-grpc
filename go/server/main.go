@@ -3,35 +3,36 @@
 package main
 
 import (
-  "log"
-  "net"
+	"log"
+	"net"
 
-  "golang.org/x/net/context"
-  "google.golang.org/grpc"
-  pb "github.com/furikuri/hello-grpc/go/proto"
-  "google.golang.org/grpc/reflection"
+	pb "github.com/furikuri/hello-grpc/go/proto"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 const (
-  port = ":50051"
+	port = ":50051"
 )
 
 type server struct{}
 
-func (s *server) SayHello(ctx context.Context, in *pb.Request) (*pb.Reply, error) {
-  return &pb.Reply{Message: "Hello " + in.Name + " from Go Server"}, nil
+func (s *server) SayHello(ctx context.Context, in *pb.Request) 
+(*pb.Reply, error) {
+	return &pb.Reply{Message: "Hello " + in.Name + " from Go Server"}, nil
 }
 
 func main() {
-  lis, err := net.Listen("tcp", port)
-  if err != nil {
-    log.Fatalf("failed to listen: %v", err)
-  }
-  s := grpc.NewServer()
-  pb.RegisterGreeterServer(s, &server{})
+	lis, err := net.Listen("tcp", port)
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+	s := grpc.NewServer()
+	pb.RegisterGreeterServer(s, &server{})
 
-  reflection.Register(s)
-  if err := s.Serve(lis); err != nil {
-    log.Fatalf("failed to serve: %v", err)
-  }
+	reflection.Register(s)
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }

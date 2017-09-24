@@ -7,7 +7,7 @@ require 'hello_services_pb'
 
 def main
   stub = Hello::Greeter::Stub.new('localhost:50051', :this_channel_is_insecure)
-  message = stub.say_hello(Helloworld::HelloRequest.new(name: 'Ruby Client')).message
+  message = stub.say_hello(Hello::Request.new(name: 'Ruby Client')).message
   p "Greeting: #{message}"
 end
 

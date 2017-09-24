@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "net.furikuri.hello";
+option java_outer_classname = "Proto";
+option objc_class_prefix = "HLW";
+
+package hello;
+
+service Greeter {
+  rpc SayHello (Request) returns (Reply) {}
+}
+
+message Request {
+  string name = 1;
+}
+
+message Reply {
+  string message = 1;
+}
